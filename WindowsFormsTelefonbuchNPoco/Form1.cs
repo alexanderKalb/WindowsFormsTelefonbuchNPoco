@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NPoco;
+using System.Configuration;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsTelefonbuchNPoco
 {
@@ -15,6 +18,31 @@ namespace WindowsFormsTelefonbuchNPoco
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonadd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonchange_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttondelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
