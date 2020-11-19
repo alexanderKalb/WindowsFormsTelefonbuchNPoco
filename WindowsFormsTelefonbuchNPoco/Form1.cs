@@ -36,17 +36,23 @@ namespace WindowsFormsTelefonbuchNPoco
 
         private void buttonadd_Click(object sender, EventArgs e)
         {
-
+            PersonHinzufügen();
+            DatenLaden();
+            AnzeigeAktualisieren();
         }
 
         private void buttonchange_Click(object sender, EventArgs e)
         {
-
+            PersonÄndern();
+            DatenLaden();
+            AnzeigeAktualisieren();
         }
 
         private void buttondelete_Click(object sender, EventArgs e)
         {
-
+            PersonLöschen();
+            DatenLaden();
+            AnzeigeAktualisieren();
         }
         private void DatenLaden()
         {
@@ -100,9 +106,77 @@ namespace WindowsFormsTelefonbuchNPoco
             }
         }
 
+        private void PersonHinzufügen()
+        {
+            try
+            {
+                Person p = new Person();
+                p.Id = 0; // wird von Datenbank vergeben
+                p.Vorname = textBoxfName.Text;
+                p.Name = textBoxlName.Text;
+                p.Telefon = textBoxPhone.Text;
+                p.Email = textBoxMail.Text;
+                p.GeaendertAm = DateTime.Now;
+
+                using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+                using (IDatabase db = new Database(connection))
+                {
+                    db.Connection.Open();
+                    db.Insert(p);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+        }
+        private void PersonÄndern()
+        {
+            try
+            {
+                Person p = new Person();
+                p.Id = Convert.ToInt32(textBoxID.Text); // id übernehmen
+                p.Vorname = textBoxfName.Text;
+                p.Name = textBoxlName.Text;
+                p.Telefon = textBoxPhone.Text;
+                p.Email = textBoxMail.Text;
+                p.GeaendertAm = DateTime.Now;
+
+                using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+                using (IDatabase db = new Database(connection))
+                {
+                    db.Connection.Open();
+                    db.Update(p);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+
+        }
+
+        private void PersonLöschen()
+        {
+            try
+            {
+                Person p = comboBox1.SelectedItem as Person;
+                if (p != null)
+                {
+                    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+                    using (IDatabase db = new Database(connection))
+                    {
+                        db.Connection.Open();
+                        db.Delete(p);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+        }
     }
-
-
 
     class Person
     {
