@@ -27,7 +27,6 @@ namespace WindowsFormsTelefonbuchNPoco
         {
             DatenLaden();
             AnzeigeAktualisieren();
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -89,7 +88,6 @@ namespace WindowsFormsTelefonbuchNPoco
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            listBox1.Items.Add("bla");
             Person p = dataGridView1.CurrentRow.Cells["Instance"].Value as Person;
             if (p != null)
             {
@@ -98,7 +96,6 @@ namespace WindowsFormsTelefonbuchNPoco
                 textBoxlName.Text = p.Name;
                 textBoxPhone.Text = p.Telefon;
                 textBoxMail.Text = p.Email;
-                //txtGeändertAm.Text = p.GeändertAm.ToString("yyyy-MM-dd HH:mm");
                 comboBox1.SelectedItem = p;
             }
         }
